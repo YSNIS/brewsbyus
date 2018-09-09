@@ -1,2 +1,1 @@
-web: npm run build
-web: npm start
+"heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
