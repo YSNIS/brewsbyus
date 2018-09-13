@@ -9,22 +9,33 @@
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "postinstall": "webpack --mode production"
+    "postinstall": "sequelize db:migrate webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sandeep Raveesh",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "pg": "^7.4.3",
+    "pg-format": "^1.0.4",
+    "pg-hstore": "^2.3.2",
     "react": "^16.3.1",
-    "react-dom": "^16.3.1"
+    "react-dom": "^16.3.1",
+    "sequelize": "^4.38.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.0.1",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "7.0.0-alpha.5",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^4.0.0",
     "css-loader": "^1.0.0",
