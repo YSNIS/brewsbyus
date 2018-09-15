@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './app.css';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import ReactImage from './react.png';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Header from './components/header';
+
 
 export default class App extends Component {
   state = { username: null };
@@ -16,15 +16,11 @@ export default class App extends Component {
   render() {
     const { username } = this.state;
     return (
-      <AppBar>
-        <div className="xs-12">
-          <h1>Brewsbyus</h1>
-        </div>
-      </AppBar>
-      // <div>  
-      //   {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-      //   <img src={ReactImage} alt="react" />
-      // </div>
+      <React.Fragment>
+        <CssBaseline />
+        <Header />
+        {/* <Main />  */}
+      </React.Fragment>
     );
   }
 }

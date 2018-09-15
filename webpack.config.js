@@ -26,6 +26,13 @@ module.exports = {
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         loader: 'url-loader?limit=100000'
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
       }
     ]
   },
@@ -42,5 +49,8 @@ module.exports = {
       template: './public/index.html',
       favicon: './public/favicon.ico'
     })
-  ]
+  ],
+  resolve: {
+    extensions: [".jsx", ".js"]
+  }
 };
