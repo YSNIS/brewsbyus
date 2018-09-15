@@ -15,10 +15,6 @@ if (config.use_env_variable) {
   );
 }
 
-console.log('CHECKING ENV');
-console.log(process.env.NODE_ENV);
-console.log(env);
-
 fs
   .readdirSync(__dirname)
   .filter(file =>
