@@ -6,19 +6,14 @@ const dotenv = require('dotenv');
 
 const outputDirectory = 'dist';
 
-// call dotenv and it will return an Object with a parsed key 
+// call dotenv if not production - otherwise use heroku config environment variables
 const env = process.env.NODE_ENV === 'production' ? process.env : dotenv.config().parsed;
-
-console.log('------------- Checking NODE ENVIRONMENT -------------')
-console.log(process.env.NODE_ENV);
 
 // reduce it to a nice object, the same as before
 const envKeys = env ? Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next]);
   return prev;
 }, {}) : null;
-
-console.log(envKeys);
 
 module.exports = {
   entry: './src/client/index.js',
