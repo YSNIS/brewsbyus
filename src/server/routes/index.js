@@ -11,6 +11,11 @@ module.exports = (app) => {
   app.post('/api/todos', todosController.create);
   app.get('/api/todos', todosController.list);
 
+  app.get('/test', (req, res) => res.status(200).send({
+      message: 'Welcome to the beginning of nothingness.',
+  }));
+
+
   // Default CATCH-ALL
   app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, '../../../dist/index.html'), function(err) {
