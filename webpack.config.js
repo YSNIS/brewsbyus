@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 const outputDirectory = 'dist';
 
 // call dotenv and it will return an Object with a parsed key 
-const env = dotenv.config().parsed;
+const env = process.env.NODE_ENV === 'production' ? process.env : dotenv.config().parsed;
 
 console.log('------------- Checking NODE ENVIRONMENT -------------')
 console.log(process.env.NODE_ENV);
