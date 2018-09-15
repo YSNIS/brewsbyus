@@ -6,20 +6,24 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 
 const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
+    root: {
+        flexGrow: 1,
+    },
+    grow: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginLeft: -12,
+        marginRight: 20,
+    },
+    navLink: {
+        color: '#fff',
+        'text-decoration': 'none'
+    }
 };
 
 function ButtonAppBar(props) {
@@ -28,13 +32,15 @@ function ButtonAppBar(props) {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                    <MenuIcon />
-                </IconButton>
-                <Link to='/marketplace'><Button color="inherit">Marketplace</Button></Link>
-                <Link to='/mybrewery'><Button color="inherit">My Brewery</Button></Link>
-                <div className={classes.grow} />
-                <Button color="inherit">Login</Button>
+                    <Link className={ classes.navLink } to='/'>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Home">
+                            <HomeIcon />
+                        </IconButton>
+                    </Link>
+                    <Link className={ classes.navLink } to='/marketplace'><Button color="inherit">Marketplace</Button></Link>
+                    <Link className={ classes.navLink } to='/mybrewery'><Button color="inherit">My Brewery</Button></Link>
+                    <div className={classes.grow} />
+                    <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
         </div>
