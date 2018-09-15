@@ -1,6 +1,8 @@
 const todosController = require('../controllers').todos;
 
 module.exports = (app) => {
+  
+  // API ROUTES
   app.get('/api', (req, res) => res.status(200).send({
     message: 'Welcome to the Todos API!',
   }));

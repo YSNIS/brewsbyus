@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
@@ -30,8 +31,8 @@ function ButtonAppBar(props) {
                 <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                     <MenuIcon />
                 </IconButton>
-                <Button color="inherit">Marketplace</Button>
-                <Button color="inherit">My Brewery</Button>
+                <Link to='/marketplace'><Button color="inherit">Marketplace</Button></Link>
+                <Link to='/mybrewery'><Button color="inherit">My Brewery</Button></Link>
                 <div className={classes.grow} />
                 <Button color="inherit">Login</Button>
                 </Toolbar>
