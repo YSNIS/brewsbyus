@@ -6,16 +6,16 @@ const dotenv = require('dotenv');
 
 const outputDirectory = 'dist';
 
-// // call dotenv and it will return an Object with a parsed key 
-// const env = dotenv.config().parsed;
+// call dotenv and it will return an Object with a parsed key 
+const env = dotenv.config().parsed;
   
-// // reduce it to a nice object, the same as before
-// const envKeys = Object.keys(env).reduce((prev, next) => {
-//   prev[`process.env.${next}`] = JSON.stringify(env[next]);
-//   return prev;
-// }, {});
+// reduce it to a nice object, the same as before
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
 
-// console.log(envKeys);
+console.log(envKeys);
 
 module.exports = {
   entry: './src/client/index.js',
@@ -63,8 +63,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico'
-    })
-    // new webpack.DefinePlugin(envKeys)
+    }),
+    new webpack.DefinePlugin(envKeys)
   ],
   resolve: {
     extensions: [".jsx", ".js"]
