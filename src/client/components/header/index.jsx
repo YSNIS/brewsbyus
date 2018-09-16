@@ -40,7 +40,8 @@ function ButtonAppBar(props) {
                     <Link className={ classes.navLink } to='/marketplace'><Button color="inherit">Marketplace</Button></Link>
                     <Link className={ classes.navLink } to='/mybrewery'><Button color="inherit">My Brewery</Button></Link>
                     <div className={classes.grow} />
-                    <Button color="inherit">Login</Button>
+                    <Link className={ classes.navLink } to='/login'><Button color="inherit">Login</Button></Link>
+                    <Link className={ classes.navLink } to='/signup'><Button color="inherit">Signup</Button></Link>
                 </Toolbar>
             </AppBar>
         </div>
