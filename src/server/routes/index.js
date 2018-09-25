@@ -1,5 +1,6 @@
 import todosController from '../controllers/todos';
 import path from 'path';
+import { getDashboardMockData } from '../mock-data/dashboard';
 
 module.exports = (app) => {
 
@@ -10,6 +11,11 @@ module.exports = (app) => {
 
   app.post('/api/todos', todosController.create);
   app.get('/api/todos', todosController.list);
+  
+  // MOCK DATA
+  app.get('/api/mockdata/dashboard', (req, res) => {
+    res.send(getDashboardMockData());
+  });
 
   app.get('/test', (req, res) => res.status(200).send({
       message: 'Welcome to the beginning of nothingness.',

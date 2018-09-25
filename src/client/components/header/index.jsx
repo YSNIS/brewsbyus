@@ -32,7 +32,7 @@ function ButtonAppBar(props) {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <Link className={ classes.navLink } to='/'>
+                    <Link className={ classes.navLink } to='/dashboard'>
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Home">
                             <HomeIcon />
                         </IconButton>
