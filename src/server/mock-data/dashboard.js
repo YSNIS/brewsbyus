@@ -12,12 +12,12 @@ export function getDashboardMockData() {
                     "chocolate",
                     "rich"
                 ],
-                "status": "Brewing",
+                "status": "Funding",
                 "committed": 250,
                 "totalToBeMade": 500
             },
             {
-                "id": 1,
+                "id": 2,
                 "name": "John's Super Stout",
                 "price": 200,
                 "type": "Stout",
@@ -29,10 +29,10 @@ export function getDashboardMockData() {
                 ],
                 "status": "Brewing",
                 "committed": 250,
-                "totalToBeMade": 500
+                "totalToBeMade": 400
             },
             {
-                "id": 1,
+                "id": 3,
                 "name": "Nick's Super Stout",
                 "price": 200,
                 "type": "Stout",
@@ -44,7 +44,7 @@ export function getDashboardMockData() {
                 ],
                 "status": "Brewing",
                 "committed": 250,
-                "totalToBeMade": 500
+                "totalToBeMade": 300
             }
         ],
         "purchased": [],
