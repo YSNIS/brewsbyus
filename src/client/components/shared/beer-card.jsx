@@ -128,7 +128,7 @@ class BeerCard extends React.Component {
                     <Typography variant="body2" className={classes['card-font']}>{beer.status}</Typography>            
                     { beer.status === 'Brewing' &&                     
                         <React.Fragment>
-                            <Typography variant="body2" className={classes['card-font']}>{beer.brewer}</Typography> 
+                            <Typography variant="body2" className={classes['card-font']}>Brewed By: <span style={{color: '#3570ce'}}>{beer.brewer}</span></Typography> 
                             <Typography variant="body2" className={classes['card-font']}>{beer.totalToBeMade - beer.committed} Left!</Typography>
                         </React.Fragment>
                     }
