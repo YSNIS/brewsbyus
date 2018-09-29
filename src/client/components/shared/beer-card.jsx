@@ -5,7 +5,9 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteBorder';
 import classNames from 'classnames';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 
 
 const styles = theme => ({
@@ -15,6 +17,11 @@ const styles = theme => ({
         height: 160,
         position: 'relative',
         padding: '3px 4px 0',
+        cursor: 'pointer',
+        transitionDuration: 100,
+        '&:hover': {
+            transform: 'scale(1.05)'
+        },
         '& img': {
             width: 64,
             height: 64
@@ -60,17 +67,47 @@ class BeerCard extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            beer: props.beer
+        }
     }
 
     render() {
-        const { classes, beer } = this.props;
+
+        let self = this;
+
+        const { classes, styles, beer } = this.props;        
+
+        function open(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Open')
+        }
+    
+        function saveToFavorites(e) {
+            e.stopPropagation();
+            console.log('Save');       
+            self.setState({
+                beer: {
+                    ...self.beer,
+                    favorite: !self.state.beer.favorite
+                }
+            });
+        }
 
         return (
-            <Paper className={classes.root}>
+            <Paper style={styles} className={classes.root} onClick={open}>
                 <Typography variant="body2" className={classNames(classes['card-font'], classes.title)}>{beer.name}</Typography>
-                <IconButton aria-label="FavoriteIcon" className={classes.favorite}> 
-                    <FavoriteIcon/>
-                </IconButton>
+                { self.state.beer.favorite && 
+                    <IconButton aria-label="FavoriteIcon" onClick={saveToFavorites} className={classes.favorite}> 
+                        <FavoriteIcon/>
+                    </IconButton>
+                }
+                { !self.state.beer.favorite &&
+                    <IconButton aria-label="FavoriteOutlinedIcon" onClick={saveToFavorites} className={classes.favorite}> 
+                        <FavoriteOutlinedIcon/>
+                    </IconButton>
+                }
                 <Typography 
                     variant="body2" 
                     className={classNames(classes['card-font'], classes.price)}>

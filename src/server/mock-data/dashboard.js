@@ -4,6 +4,7 @@ export function getDashboardMockData() {
             {
                 "id": 1,
                 "name": "Jake's Super Stout",
+                "favorite": false,
                 "price": 200,
                 "type": "Stout",
                 "brewer": "Dogfish Head Brewery",
@@ -19,6 +20,7 @@ export function getDashboardMockData() {
             {
                 "id": 2,
                 "name": "John's Super Stout",
+                "favorite": true,                
                 "price": 200,
                 "type": "Stout",
                 "brewer": "Dogfish Head Brewery",
@@ -34,6 +36,7 @@ export function getDashboardMockData() {
             {
                 "id": 3,
                 "name": "Nick's Super Stout",
+                "favorite": false,                
                 "price": 200,
                 "type": "Stout",
                 "brewer": "Dogfish Head Brewery",
