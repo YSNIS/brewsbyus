@@ -65,12 +65,19 @@ class Dashboard extends React.Component {
                     <Grid item xs={12}>
                         <h1>Beers Purchased</h1>
                     </Grid>
-                    {/* <DashboardBeerList beers={dashboard.purchased} to={'created'}/> */}
+                    {this.state.isLoading === false ? (
+                        <DashboardBeerList beers={dashboard.purchased} to={'created'} />
+                    ) : (
+                            <div></div>
+                        )}
 
                     <Grid item xs={12}>
                         <h1>Staff Recommendations</h1>
-                    </Grid>
-                    {/* <DashboardBeerList beers={dashboard.recommended} to={'created'}/> */}
+                    </Grid>{this.state.isLoading === false ? (
+                        <DashboardBeerList beers={dashboard.recommended} to={'created'} />
+                    ) : (
+                            <div></div>
+                        )}
 
                 </Grid>
             </div>
