@@ -102,7 +102,7 @@ class BeerCard extends React.Component {
             console.log('Save');
             self.setState({
                 beer: {
-                    ...self.beer,
+                    ...self.state.beer,
                     favorite: !self.state.beer.favorite
                 }
             });

@@ -66,7 +66,7 @@ class Dashboard extends React.Component {
                         <h1>Beers Purchased</h1>
                     </Grid>
                     {this.state.isLoading === false ? (
-                        <DashboardBeerList beers={dashboard.purchased} to={'created'} />
+                        <DashboardBeerList beers={dashboard.purchased} to={'purchased'} />
                     ) : (
                             <div></div>
                         )}
@@ -74,7 +74,7 @@ class Dashboard extends React.Component {
                     <Grid item xs={12}>
                         <h1>Staff Recommendations</h1>
                     </Grid>{this.state.isLoading === false ? (
-                        <DashboardBeerList beers={dashboard.recommended} to={'created'} />
+                        <DashboardBeerList beers={dashboard.recommended} to={'recommended'} />
                     ) : (
                             <div></div>
                         )}
