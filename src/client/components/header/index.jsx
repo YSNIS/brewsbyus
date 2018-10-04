@@ -26,26 +26,53 @@ const styles = {
     }
 };
 
-function ButtonAppBar(props) {
-    const { classes } = props;
-    return (
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Link className={ classes.navLink } to='/dashboard'>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Home">
-                            <HomeIcon />
-                        </IconButton>
-                    </Link>
-                    <Link className={ classes.navLink } to='/marketplace'><Button color="inherit">Marketplace</Button></Link>
-                    <Link className={ classes.navLink } to='/mybrewery'><Button color="inherit">My Brewery</Button></Link>
-                    <div className={classes.grow} />
-                    <Link className={ classes.navLink } to='/login'><Button color="inherit">Login</Button></Link>
-                    <Link className={ classes.navLink } to='/signup'><Button color="inherit">Signup</Button></Link>
-                </Toolbar>
-            </AppBar>
-        </div>
-    );
+class ButtonAppBar extends React.Component {
+
+    handleOnClickSignOut(e) {
+        const url = process.env.API_URL;
+
+        fetch(`${url}/user/logout`, {
+            credentials: 'include',
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    render() {
+        const { classes, user } = this.props;
+
+        return (
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Link className={classes.navLink} to='/dashboard'>
+                            <IconButton className={classes.menuButton} color="inherit" aria-label="Home">
+                                <HomeIcon />
+                            </IconButton>
+                        </Link>
+                        <Link className={classes.navLink} to='/marketplace'><Button color="inherit">Marketplace</Button></Link>
+                        <Link className={classes.navLink} to='/mybrewery'><Button color="inherit">My Brewery</Button></Link>
+                        <div className={classes.grow} />
+                        {!user &&
+                            <>
+                            <Link className={classes.navLink} to='/login'><Button color="inherit">Login</Button></Link>
+                            <Link className={classes.navLink} to='/signup'><Button color="inherit">Signup</Button></Link>
+                            </>
+                        }
+                        {user &&
+                            <Button onClick={this.handleOnClickSignOut} color="inherit">Sign Out</Button>
+                        }
+                    </Toolbar>
+                </AppBar>
+            </div>
+        )
+    }
 }
 
 ButtonAppBar.propTypes = {

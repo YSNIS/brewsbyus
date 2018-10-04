@@ -31,18 +31,22 @@ class Dashboard extends React.Component {
         const url = process.env.API_URL;
         console.log(url);
 
-        fetch(`${url}/api/mockdata/dashboard`)
+        fetch(`${url}/api/mockdata/dashboard`, {
+            credentials: 'include',
+            headers: {
+            }
+        })
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                     isLoading: false,
                     dashboard: responseJson
                 })
-                // console.log(this.state);
             })
             .catch((error) => {
                 console.error(error);
             });
+
 
     }
 

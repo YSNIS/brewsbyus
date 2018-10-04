@@ -56,6 +56,32 @@ class Login extends React.Component {
         });
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+
+        const url = process.env.API_URL;
+
+        fetch(`${url}/api/login`, {
+            method: 'post',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                'username': 'jfleish1',
+                'password': 'jdflei03'
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+
     render(props) {
         return (
             <div className={this.props.classes.layout}>
@@ -64,7 +90,7 @@ class Login extends React.Component {
                         <LockIcon />
                     </Avatar>
                     <Typography variant="headline">Login</Typography>
-                    <form className={this.props.classes.form}>
+                    <form className={this.props.classes.form} onSubmit={this.handleSubmit}>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="email">Email Address</InputLabel>
                             <Input id="email" name="email" autoComplete="email" autoFocus />

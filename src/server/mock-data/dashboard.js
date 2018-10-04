@@ -1,4 +1,4 @@
-export function getDashboardMockData() {
+export default function() {
     return {
         "created": [
             {
