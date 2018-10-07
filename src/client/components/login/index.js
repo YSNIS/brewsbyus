@@ -46,9 +46,19 @@ const styles = theme => ({
 
 
 class Login extends React.Component {
+
     constructor(props) {
         super(props);
+
+        this.state = { 
+            email: '',
+            password: ''
+        }
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
 
     componentDidMount() {
         this.setState((state, props) => {
@@ -56,10 +66,24 @@ class Login extends React.Component {
         });
     }
 
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
-        const url = process.env.API_URL;
+        const url = process.env.API_URL;      
+
+        const username = this.state.email;
+        const password = this.state.password;
 
         fetch(`${url}/api/login`, {
             method: 'post',
@@ -69,12 +93,13 @@ class Login extends React.Component {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                'username': 'jfleish1',
-                'password': 'jdflei03'
+                'username': username,
+                'password': password
             })
         })
             .then((response) => response.json())
             .then((responseJson) => {
+                // this.props.history.push('/mybrewery');
                 window.location.reload();
             })
             .catch((error) => {
@@ -93,7 +118,13 @@ class Login extends React.Component {
                     <form className={this.props.classes.form} onSubmit={this.handleSubmit}>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="email">Email Address</InputLabel>
-                            <Input id="email" name="email" autoComplete="email" autoFocus />
+                            <Input 
+                                id="email" 
+                                name="email" 
+                                autoComplete="email" 
+                                onChange={this.handleInputChange}
+                                autoFocus
+                            />
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="password">Password</InputLabel>
@@ -102,6 +133,7 @@ class Login extends React.Component {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                onChange={this.handleInputChange}
                             />
                         </FormControl>
                         <Button

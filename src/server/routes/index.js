@@ -14,10 +14,6 @@ module.exports = (app) => {
   app.post('/api/todos', todosController.create);
   app.get('/api/todos', todosController.list);
   app.get('/test', (req, res) => {
-    console.log('IS AUTH: ', req.isAuthenticated());
-    console.log(req.session);
-    console.log(req.cookie);
-    console.log(req.user);
     res.status(200).send({
       message: 'Welcome to the beginning of nothingness.',
     })
@@ -41,10 +37,7 @@ module.exports = (app) => {
   app.post('/api/login', passport.authenticate('local'), function (req, res) {
 
     const { user } = req
-    console.log('IS AUTH: ', req.isAuthenticated());
-    console.log(req.session);
-    // console.log(req.cookie);
-    // console.log(req.user);
+
     req.session.save(function () {
       res.json(user)
     });
@@ -58,5 +51,5 @@ module.exports = (app) => {
       }
     })
   })
-
+  
 };
