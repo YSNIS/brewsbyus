@@ -24,14 +24,22 @@ module.exports = (app) => {
   setMockRoutes(app);
 
   // User Routes
-  app.get('/user/getCurrent', function(req, res) {
-    const { user } = req    
-    res.json(user);
+  app.get('/user/getCurrent', function (req, res) {
+    const { user } = req
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(200).send({
+        message: 'not signed in'
+      })
+    }
   })
 
-  app.get('/user/logout', function(req, res){
+  app.get('/user/logout', function (req, res) {
     req.logout();
-    res.redirect('/');
+    res.status(200).send({
+      message: 'logged out'
+    })
   });
 
   app.post('/api/login', passport.authenticate('local'), function (req, res) {
@@ -51,5 +59,5 @@ module.exports = (app) => {
       }
     })
   })
-  
+
 };

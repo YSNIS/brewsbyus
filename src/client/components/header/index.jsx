@@ -34,7 +34,6 @@ class ButtonAppBar extends React.Component {
         fetch(`${url}/user/logout`, {
             credentials: 'include',
         })
-            .then((response) => response.json())
             .then((responseJson) => {
                 window.location.reload();
             })
