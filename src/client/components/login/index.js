@@ -52,7 +52,8 @@ class Login extends React.Component {
 
         this.state = { 
             email: '',
-            password: ''
+            password: '',
+            hasError: false
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -97,10 +98,16 @@ class Login extends React.Component {
                 'password': password
             })
         })
-            .then((response) => response.json())
-            .then((responseJson) => {
+            .then((response) => {
                 // this.props.history.push('/mybrewery');
-                window.location.reload();
+                if (response.status === 200) {
+                    window.location.reload();
+                }
+                if (response.status === 401) {
+                    this.setState({
+                        hasError: true
+                    });
+                }
             })
             .catch((error) => {
                 console.error(error);
@@ -119,6 +126,7 @@ class Login extends React.Component {
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="email">Email Address</InputLabel>
                             <Input 
+                                error={this.state.hasError}
                                 id="email" 
                                 name="email" 
                                 autoComplete="email" 
@@ -129,6 +137,7 @@ class Login extends React.Component {
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="password">Password</InputLabel>
                             <Input
+                                error={this.state.hasError}                            
                                 name="password"
                                 type="password"
                                 id="password"
