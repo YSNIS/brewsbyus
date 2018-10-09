@@ -8,7 +8,7 @@ export default function (db) {
         console.log('-------------------------------------')
         console.log(username);
         console.log(password);
-        db.sequelize.query(`SELECT * FROM "Users" WHERE username=\'${ username }\'`)
+        db.sequelize.query(`SELECT * FROM "User" WHERE "Username"=\'${ username }\'`)
             .then(result => {
                 const rows = result[0];
                 if (rows.length > 0) {
@@ -37,7 +37,7 @@ export default function (db) {
     })
 
     passport.deserializeUser((id, cb) => {
-        db.sequelize.query('SELECT id, username, type FROM "Users" WHERE id = 1')
+        db.sequelize.query('SELECT id, "Username", "Type" FROM "User" WHERE id = 1')
             .then(results => {
                 cb(null, results[1].rows[0])
             })

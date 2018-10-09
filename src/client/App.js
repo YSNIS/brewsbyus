@@ -19,7 +19,7 @@ export default class App extends Component {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        if (responseJson) {
+        if (responseJson.id) {
           this.setState({
             user: responseJson
           })
