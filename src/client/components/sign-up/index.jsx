@@ -46,8 +46,76 @@ const styles = theme => ({
 
 
 class SignUp extends React.Component {
+
     constructor(props) {
         super(props);
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    state = {
+        curPage: 1,
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        zipCode: ''
+    }
+
+    nextPage = () => {
+        this.setState({
+            curPage: this.state.curPage + 1
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        const url = process.env.API_URL;      
+
+        const username = this.state.email;
+        const password = this.state.password;
+        const firstName = this.state.firstName;
+        const lastName = this.state.lastName;
+        const zipCode = this.state.zipCode;
+
+        fetch(`${url}/user/register`, {
+            method: 'post',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                'username': username,
+                'password': password,
+                'firstName': firstName,
+                'lastName': lastName,
+                'zipCode': zipCode
+            })
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    window.location.reload();
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+
+        console.log(this.state);
+
     }
 
     componentDidMount() {
@@ -57,6 +125,7 @@ class SignUp extends React.Component {
     }
 
     render(props) {
+        let { curPage } = this.state;
         return (
             <div className={this.props.classes.layout}>
                 <Paper className={this.props.classes.paper}>
@@ -64,29 +133,94 @@ class SignUp extends React.Component {
                         <LockIcon />
                     </Avatar>
                     <Typography variant="headline">Sign Up</Typography>
-                    <form className={this.props.classes.form}>
-                        <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="email">Email Address</InputLabel>
-                            <Input id="email" name="email" autoComplete="email" autoFocus />
-                        </FormControl>
-                        <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input
-                                name="password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
-                        </FormControl>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="raised"
-                            color="primary"
-                            className={this.props.classes.submit}
-                        >
-                            Sign Up
-                        </Button>
+                    <form className={this.props.classes.form} onSubmit={this.handleSubmit}>
+                        {curPage === 1 &&
+                            <>
+                            <FormControl margin="normal" required fullWidth>
+                                <InputLabel htmlFor="email">Email Address</InputLabel>
+                                <Input
+                                    id="email"
+                                    name="email"
+                                    onChange={this.handleInputChange}
+                                    autoFocus
+                                />
+                            </FormControl>
+
+                            <FormControl margin="normal" required fullWidth>
+                                <InputLabel htmlFor="password">Password</InputLabel>
+                                <Input
+                                    name="password"
+                                    type="password"
+                                    id="password"
+                                    onChange={this.handleInputChange}
+                                    
+                                />
+                            </FormControl>
+
+                            <FormControl margin="normal" required fullWidth>
+                                <InputLabel htmlFor="retypePassword">Retype Password</InputLabel>
+                                <Input
+                                    name="retypePassword"
+                                    type="password"
+                                    id="retypePassword"
+                                    onChange={this.handleInputChange}
+                                />
+                            </FormControl>
+
+                            <Button
+                                type="button"
+                                fullWidth
+                                variant="raised"
+                                color="primary"
+                                onClick={this.nextPage}
+                                className={this.props.classes.submit}
+                            >
+                                Next Page
+                            </Button>
+                            </>
+                        }
+                        {curPage === 2 &&
+                            <>
+                            <FormControl margin="normal" required fullWidth>
+                                <InputLabel htmlFor="firstName">First Name</InputLabel>
+                                <Input
+                                    id="firstName"
+                                    name="firstName"
+                                    onChange={this.handleInputChange}                                    
+                                    autoFocus
+                                />
+                            </FormControl>
+
+                            <FormControl margin="normal" required fullWidth>
+                                <InputLabel htmlFor="lastName">Last Name</InputLabel>
+                                <Input
+                                    name="lastName"
+                                    id="lastName"
+                                    onChange={this.handleInputChange}                                    
+                                />
+                            </FormControl>
+
+                            <FormControl margin="normal" required fullWidth>
+                                <InputLabel htmlFor="zipCode">ZIP Code</InputLabel>
+                                <Input
+                                    name="zipCode"
+                                    id="zipCode"
+                                    onChange={this.handleInputChange}                                    
+                                />
+                            </FormControl>
+
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="raised"
+                                color="primary"
+                                className={this.props.classes.submit}
+                            >
+                                Sign Up
+                            </Button>
+                            </>
+                        }
+
                     </form>
                 </Paper>
             </div>

@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      FamilyId: {
+      familyId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -16,7 +16,7 @@ module.exports = {
           key: 'id'
         },
       },
-      ColorId: {
+      colorId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -24,7 +24,7 @@ module.exports = {
           key: 'id'
         },
       },
-      TextureId: {
+      textureId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {

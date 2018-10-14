@@ -86,7 +86,7 @@ class Login extends React.Component {
         const username = this.state.email;
         const password = this.state.password;
 
-        fetch(`${url}/api/login`, {
+        fetch(`${url}/user/login`, {
             method: 'post',
             credentials: 'include',
             headers: {

@@ -8,31 +8,31 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      Username: {
+      username: {
         type: Sequelize.STRING
       },
-      Password: {
+      password: {
         type: Sequelize.STRING
       },
-      FirstName: {
+      firstName: {
         type: Sequelize.STRING
       },
-      LastName: {
+      lastName: {
         type: Sequelize.STRING
       },
-      Type: {
+      type: {
         type: Sequelize.STRING
       },
-      Address: {
+      address: {
         type: Sequelize.STRING
       },
-      City: {
+      city: {
         type: Sequelize.STRING
       },
-      State: {
+      state: {
         type: Sequelize.STRING
       },
-      ZipCode: {
+      zipCode: {
         type: Sequelize.STRING
       },
       createdAt: {
