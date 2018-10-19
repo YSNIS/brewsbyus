@@ -1,9 +1,8 @@
-import path from 'path';
-import setMockRoutes from './mock';
-import setUserRoutes from './user';
+import path from "path";
+import setMockRoutes from "./mock";
+import setUserRoutes from "./user";
 
-module.exports = (app) => {
-
+module.exports = app => {
   // Mock Data Routes
   setMockRoutes(app);
 
@@ -11,12 +10,13 @@ module.exports = (app) => {
   setUserRoutes(app);
 
   // Default CATCH-ALL
-  app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, '../../../dist/index.html'), function (err) {
+  app.get("/*", function(req, res) {
+    res.sendFile(path.join(__dirname, "../../../dist/index.html"), function(
+      err
+    ) {
       if (err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
       }
-    })
-  })
-
+    });
+  });
 };
