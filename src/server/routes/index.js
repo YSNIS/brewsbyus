@@ -1,13 +1,13 @@
 import path from "path";
-import setMockRoutes from "./mock";
-import setUserRoutes from "./user";
+import mockDataRoutes from "./mock";
+import userRoutes from "./user";
 
 module.exports = app => {
   // Mock Data Routes
-  setMockRoutes(app);
+  mockDataRoutes(app);
 
   // User Routes
-  setUserRoutes(app);
+  userRoutes(app);
 
   // Default CATCH-ALL
   app.get("/*", function(req, res) {

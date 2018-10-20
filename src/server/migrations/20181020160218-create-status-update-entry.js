@@ -1,18 +1,21 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Family', {
+    return queryInterface.createTable('StatusUpdateEntries', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
+      beerJobId: {
+        type: Sequelize.INTEGER
       },
-      description: {
-        type: Sequelize.STRING
+      statusId: {
+        type: Sequelize.INTEGER
+      },
+      entryDate: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -25,6 +28,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Family');
+    return queryInterface.dropTable('StatusUpdateEntries');
   }
 };
