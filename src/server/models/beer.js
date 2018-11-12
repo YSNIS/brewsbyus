@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       beerTypeId: DataTypes.INTEGER,
       name: DataTypes.STRING,
       description: DataTypes.STRING,
-      attributes: DataTypes.STRING
+      beerAttributes: DataTypes.STRING
     },
     {}
   );
