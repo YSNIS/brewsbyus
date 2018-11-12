@@ -14,6 +14,7 @@ export default function(app) {
   // Login
   app.post("/user/login", passport.authenticate("local"), function(req, res) {
     const { user } = req;
+    console.log(user);
     req.session.save(function() {
       res.json(user);
     });
@@ -28,7 +29,6 @@ export default function(app) {
         if (err) return next(err);
         newUser.password = hash;
         newUser.type = "consumer";
-
         db.User.create(newUser);
       });
     });
