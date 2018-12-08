@@ -6,7 +6,6 @@ import HeaderToggle from './HeaderToggle'
 import HeaderModal from './HeaderModal'
 import Logo from './Logo'
 
-
 const links = [
   {
     label: 'Dashboard',
@@ -51,20 +50,18 @@ const HeaderWrapper = styled.div`
 `
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {isModalToggled: false};
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+
+  state = {
+    isModalToggled: false
   }
 
-  openModal() {
+  openModal = () => {
     this.setState({
       isModalToggled: true
     })
   }
 
-  closeModal() {
+  closeModal = () => {
     this.setState({
       isModalToggled: false
     })
@@ -79,9 +76,9 @@ class Header extends React.Component {
           <HeaderLinks links={links}/>
           <HeaderLogout user={user} />
         </HeaderWrapper>
-        <HeaderToggle onClick={this.openModal} />
+        <HeaderToggle openModal={this.openModal} />
         {this.state.isModalToggled && (
-          <HeaderModal onClick={this.closeModal}>
+          <HeaderModal closeModal={this.closeModal}>
             <HeaderWrapper isModal>
               <HeaderLinks links={links}/>
               <HeaderLogout user={user} />

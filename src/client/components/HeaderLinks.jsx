@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
@@ -50,29 +51,29 @@ const LinkButton = styled(Link)`
   }
 `
 
-class HeaderLinks extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    const { user, links } = this.props
-    return (
-      links.map((link, index) =>
-        link.buttonColor ? (
-          ( !user &&
-            <LinkButton to={link.to} background={link.buttonColor} key={index}>
-              {link.label}
-            </LinkButton>
-          )
-        ) : (
-          <LinkStyled to={link.to} key={index}>
+const HeaderLinks = props => {
+  const { user, links } = props
+  return (
+    links.map((link, index) =>
+      link.buttonColor ? (
+        ( !user &&
+          <LinkButton to={link.to} background={link.buttonColor} key={index}>
             {link.label}
-          </LinkStyled>
+          </LinkButton>
         )
+      ) : (
+        <LinkStyled to={link.to} key={index}>
+          {link.label}
+        </LinkStyled>
       )
     )
-  }
+  )
 }
+
+HeaderLinks.propTypes = {
+  user: PropTypes.object,
+  links: PropTypes.array.isRequired
+}
+
 
 export default HeaderLinks

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const HeaderModalStyled = styled.div`
@@ -43,7 +44,7 @@ const HeaderModalCloseStyled = styled.button`
   }
 `
 
-const HeaderModalClose = props => (
+const HeaderModalClose = () => (
   <HeaderModalCloseStyled>
     <div></div>
     <div></div>
@@ -51,13 +52,17 @@ const HeaderModalClose = props => (
 )
 
 const HeaderModal = props => {
-  const { onClick } = props
+  const { closeModal } = props
   return (
-    <HeaderModalStyled onClick={onClick}>
+    <HeaderModalStyled onClick={closeModal}>
       <HeaderModalClose/>
       {props.children}
     </HeaderModalStyled>
   )
+}
+
+HeaderModal.propTypes = {
+  closeModal: PropTypes.func.isRequired
 }
 
 export default HeaderModal

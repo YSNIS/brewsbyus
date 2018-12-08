@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const HeaderToggleStyled = styled.button`
@@ -22,14 +23,18 @@ const HeaderToggleStyled = styled.button`
 `
 
 const HeaderToggle = (props) => {
-  const { onClick } = props
+  const { openModal } = props
   return (
-    <HeaderToggleStyled onClick={onClick}>
+    <HeaderToggleStyled onClick={openModal}>
       <div></div>
       <div></div>
       <div></div>
     </HeaderToggleStyled>
   )
+}
+
+HeaderToggle.propTypes = {
+  openModal: PropTypes.func.isRequired
 }
 
 export default HeaderToggle

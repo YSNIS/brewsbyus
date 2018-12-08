@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Button = styled.button`
@@ -36,12 +37,11 @@ const Button = styled.button`
 `
 
 class HeaderLogout extends React.Component {
-  constructor(props) {
-    super(props)
-    this.logout = this.logout.bind(this)
+  static propTypes = {
+    user: PropTypes.object
   }
 
-  logout() {
+  logout = () => {
     console.log('logout')
   }
 
