@@ -1,8 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-// const webpack = require('webpack');
-// const dotenv = require('dotenv');
+const webpack = require('webpack');
+const env = require('dotenv');
 
 const outputDirectory = 'dist';
 
@@ -10,10 +10,10 @@ const outputDirectory = 'dist';
 // const env = process.env.NODE_ENV === 'production' ? process.env : dotenv.config().parsed;
 
 // reduce it to a nice object, the same as before
-// const envKeys = env ? Object.keys(env).reduce((prev, next) => {
-//   prev[`process.env.${next}`] = JSON.stringify(env[next]);
-//   return prev;
-// }, {}) : null;
+const envKeys = env ? Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {}) : null;
 
 module.exports = {
   entry: './src/client/index.js',
@@ -62,7 +62,7 @@ module.exports = {
       template: './public/index.html',
       favicon: './public/favicon.ico'
     }),
-    // new webpack.DefinePlugin(envKeys)
+    new webpack.DefinePlugin(envKeys)
   ],
   resolve: {
     extensions: ['.jsx', '.js']
