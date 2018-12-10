@@ -2,12 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const dotenv = require('dotenv');
+const env = require('dotenv');
 
 const outputDirectory = 'dist';
 
 // call dotenv if not production - otherwise use heroku config environment variables
-const env = process.env.NODE_ENV === 'production' ? process.env : dotenv.config().parsed;
+// const env = process.env.NODE_ENV === 'production' ? process.env : dotenv.config().parsed;
 
 // reduce it to a nice object, the same as before
 const envKeys = env ? Object.keys(env).reduce((prev, next) => {
@@ -65,6 +65,6 @@ module.exports = {
     new webpack.DefinePlugin(envKeys)
   ],
   resolve: {
-    extensions: [".jsx", ".js"]
+    extensions: ['.jsx', '.js']
   }
 };

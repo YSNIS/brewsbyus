@@ -53,7 +53,6 @@ class Dashboard extends React.Component {
     render() {
         const { classes } = this.props;
         let { dashboard } = this.state;
-        console.log(dashboard);
         return (
             <div className={classes.root}>
                 <Grid container spacing={24}>
