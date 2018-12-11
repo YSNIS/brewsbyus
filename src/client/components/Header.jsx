@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import HeaderLinks from './HeaderLinks'
 import HeaderLogout from './HeaderLogout'
 import HeaderToggle from './HeaderToggle'
@@ -31,7 +32,7 @@ const links = [
   }
 ]
 
-const HeaderStyled = styled.div`
+const HeaderStyled = styled.header`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -71,16 +72,18 @@ class Header extends React.Component {
     const { user } = this.props
     return (
       <HeaderStyled>
-        <Logo />
+        <Link to='/'>
+          <Logo />
+        </Link>
         <HeaderWrapper>
-          <HeaderLinks links={links}/>
+          <HeaderLinks user={user} links={links}/>
           <HeaderLogout user={user} />
         </HeaderWrapper>
         <HeaderToggle openModal={this.openModal} />
         {this.state.isModalToggled && (
           <HeaderModal closeModal={this.closeModal}>
             <HeaderWrapper isModal>
-              <HeaderLinks links={links}/>
+              <HeaderLinks user={user} links={links}/>
               <HeaderLogout user={user} />
             </HeaderWrapper>
           </HeaderModal>
