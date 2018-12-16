@@ -20,7 +20,8 @@ class CheckoutForm extends Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         stripeToken: token.id,
-        userId: 1
+        userId: 1,
+        beerTypeId: 1
       })
     });
 
