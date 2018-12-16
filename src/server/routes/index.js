@@ -2,6 +2,7 @@ import path from "path";
 import mockDataRoutes from "./mock";
 import userAuthRoutes from "./userAuth";
 import beerRoutes from "./beer";
+import stripeRoutes from "./stripe";
 
 module.exports = app => {
   // Mock Data Routes
@@ -12,6 +13,9 @@ module.exports = app => {
 
   // Beer Routes
   beerRoutes(app);
+
+  // Stripe Routes
+  stripeRoutes(app);
 
   // Default CATCH-ALL
   app.get("/*", function(req, res) {
