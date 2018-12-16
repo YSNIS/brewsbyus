@@ -1,12 +1,36 @@
-import React, { Component } from 'react';
-import './app.css';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Header from './components/header';
+import React from 'react';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { Normalize } from 'styled-normalize';
+import Header from './components/Header';
 import Main from './components/main';
 
+const theme = {
+  colors: {
+    teal: '#02796F',
+    orange: '#E7990D',
+    white: '#FFFFFF'
+  },
+  bp: {
+    xxs: '480px',
+    xs: '769px',
+    sm: '992px',
+    md: '1200px',
+    lg: '1441px'
+  }
+};
 
-export default class App extends Component {
+const GlobalStyle = createGlobalStyle`
+  html {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  }
 
+  *, *:before, *:after {
+    box-sizing: inherit
+  }
+`;
+
+export default class App extends React.Component {
   state = {
     user: null
   }
@@ -17,12 +41,12 @@ export default class App extends Component {
     fetch(`${url}/user/getCurrent`, {
       credentials: 'include',
     })
-      .then((response) => response.json())
+      .then(response => response.json())
       .then((responseJson) => {
         if (responseJson.id) {
           this.setState({
             user: responseJson
-          })
+          });
         }
       })
       .catch((error) => {
@@ -32,12 +56,16 @@ export default class App extends Component {
 
   render() {
     const { user } = this.state;
-    console.log(user);
     return (
       <React.Fragment>
-        <CssBaseline />
-        <Header user={user} />
-        <Main />
+        <GlobalStyle />
+        <Normalize />
+        <ThemeProvider theme={theme}>
+          <div>
+            <Header user={user} />
+            <Main />
+          </div>
+        </ThemeProvider>
       </React.Fragment>
     );
   }
