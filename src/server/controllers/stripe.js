@@ -4,8 +4,8 @@ import beerController from "./beers";
 // See your keys here: https://dashboard.stripe.com/account/apikeys
 const stripe = require("stripe")("sk_test_SqXeR54ta6fct442Lw87Mfzt");
 
-function createStripePreauth(req, res) {
-  req.body.charge = makeSingleStripeCharge(req, res);
+async function createStripePreauth(req, res) {
+  req.body.charge = await makeSingleStripeCharge(req, res);
   beerController.createUserBeer(req, res);
 }
 
@@ -14,12 +14,20 @@ async function makeSingleStripeCharge(req, res) {
   // Get the payment token ID submitted by the form:
   const { stripeToken } = req.body;
 
-  return (charge = await stripe.charges.create({
-    amount: 999,
-    currency: "usd",
-    description: "Example charge",
-    source: stripeToken
-  }));
+  return new Promise(async (resolve, reject) => {
+    try {
+      const charge = await stripe.charges.create({
+        amount: 999,
+        currency: "usd",
+        description: "Example charge",
+        source: stripeToken
+      });
+      resolve(charge);
+    } catch (err) {
+      console.log(err);
+      res.status(err.statusCode).send(err);
+    }
+  });
 }
 
 module.exports = {
