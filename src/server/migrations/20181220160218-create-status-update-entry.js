@@ -1,37 +1,31 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("Beers", {
+    return queryInterface.createTable("StatusUpdateEntries", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      beerJobId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Users",
+          model: "BeerJobs",
           key: "id",
-          as: "userId"
+          as: "beerJobId"
         }
       },
-      beerTypeId: {
+      statusId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "BeerTypes",
+          model: "Statuses",
           key: "id",
-          as: "beerTypeId"
+          as: "statusId"
         }
       },
-      name: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.STRING
-      },
-      beerAttributes: {
-        type: Sequelize.STRING
+      entryDate: {
+        type: Sequelize.DATE
       },
       createdAt: {
         type: Sequelize.DATE
@@ -42,6 +36,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("Beers");
+    return queryInterface.dropTable("StatusUpdateEntries");
   }
 };

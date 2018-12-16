@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("BeerPurchaseEntries", {
+    return queryInterface.createTable("BeerPurchases", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,10 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       beerJobId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "BeerJobs",
+          key: "id",
+          as: "beerJobId",
+          onDelete: "CASCADE"
+        }
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+          as: "userId",
+          onDelete: "CASCADE"
+        }
       },
       price: {
         type: Sequelize.FLOAT
@@ -30,16 +42,14 @@ module.exports = {
         type: Sequelize.DATE
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("BeerPurchaseEntries");
+    return queryInterface.dropTable("BeerPurchases");
   }
 };

@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('BeerJobs', {
+    return queryInterface.createTable("BeerJobs", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,10 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       beerId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Beers",
+          key: "id",
+          as: "beerId",
+          onDelete: "CASCADE"
+        }
       },
       brewerId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Brewers",
+          key: "id",
+          as: "brewerId",
+          onDelete: "CASCADE"
+        }
       },
       jobCap: {
         type: Sequelize.INTEGER
@@ -33,16 +45,14 @@ module.exports = {
         type: Sequelize.DATE
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('BeerJobs');
+    return queryInterface.dropTable("BeerJobs");
   }
 };

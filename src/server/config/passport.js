@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import winston from "winston";
 
 export default function(db) {
+  
   // Authorizing user
   passport.use(
     new LocalStrategy(

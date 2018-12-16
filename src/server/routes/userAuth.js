@@ -3,20 +3,20 @@ import passport from "passport";
 import db from "../models";
 
 export default function(app) {
+  // Login
+  app.post("/user/login", passport.authenticate("local"), function(req, res) {
+    const { user } = req;
+
+    req.session.save(function() {
+      res.json(user);
+    });
+  });
+
   // Logout
   app.get("/user/logout", function(req, res) {
     req.logout();
     res.status(200).send({
       message: "logged out"
-    });
-  });
-
-  // Login
-  app.post("/user/login", passport.authenticate("local"), function(req, res) {
-    const { user } = req;
-    console.log(user);
-    req.session.save(function() {
-      res.json(user);
     });
   });
 
