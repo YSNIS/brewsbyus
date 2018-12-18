@@ -8,7 +8,7 @@ const HeaderModalStyled = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: ${({theme}) => theme.colors.white};
+  background: ${({theme}) => theme.colors.light};
   padding: 1rem;
   padding-top: 2rem;
   z-index: 4;

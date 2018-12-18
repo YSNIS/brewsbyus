@@ -23,7 +23,7 @@ const Button = styled.button`
     padding: 0.25rem 1rem;
     margin-left: 1rem;
     background: ${({theme, background}) => theme.colors[background]};
-    color: ${({theme}) => theme.colors.white};
+    color: ${({theme}) => theme.colors.light};
     border-radius: 5px;
     border: 0;
     text-align: center;
